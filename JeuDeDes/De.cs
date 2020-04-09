@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace JeuDeDes
 {
-    public class De
+    /// <summary>
+    /// Un dé à lancer.
+    /// </summary>
+    public static class De
     {
-        Random random;
+        private static Random de = new Random();
 
-        public De()
+        public static int LanceLeDe()
         {
-            random = new Random();
-        }
-        public int LanceLeDe()
-        {
-            return random.Next(1, 7);
+            return de.Next(1, 7);
         }
     }
 }

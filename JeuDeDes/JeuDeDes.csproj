@@ -46,6 +46,7 @@
     <Compile Include="De.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="MonstreDifficile.cs" />
+    <Compile Include="Monstre.cs" />
     <Compile Include="MonstreFacile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

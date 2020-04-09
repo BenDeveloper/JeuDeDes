@@ -6,67 +6,80 @@ using System.Threading.Tasks;
 
 namespace JeuDeDes
 {
-    /* Le principe est de voir combien notre héros va pouvoir tuer de monstres faciles et de monstres difficiles avant de mourir, 
-    en ayant perdu tous ses points de vie (mon héros démarre avec 150 points de vie). 
-    Chaque monstre facile tué rapporte 1 point, chaque monstre difficile tué en rapporte 2.
-    Un monstre aléatoire arrive, le héros attaque le monstre ; puis si le monstre a survécu il attaque à son tour le héros et ceci jusqu'à ce que mort s'en suive. */
     public class Program
     {
-        private static Random random = new Random();
+        private static Monstre monstre;
+        private static Joueur joueur;
+
         static void Main(string[] args)
         {
-            Jeu1();
+            DemarrerJeu();
             Console.ReadLine();
         }
 
-        private static void Jeu1()
+        private static void DemarrerJeu()
         {
-            int PointsFacile = 0;
-            int PointsDifficile = 0;
+            // Nouveau joueur
+            joueur = new Joueur();
 
-            Joueur joueur = new Joueur();
-
-            Console.WriteLine(" ---  DEBUT JEU DE DE ---");
-
-            while (joueur.estVivant)
+            while (joueur.EstVivant)
             {
-                MonstreFacile monstre = FabriqueDeMonstre();
-                while (monstre.estVivant && joueur.estVivant)
-                {
-                    joueur.Attaque(monstre);
-                    if (monstre.estVivant)
-                        monstre.Attaque(joueur);
-                }
+                // Nouveau monstre aléatoire
+                monstre = CreeMonstreAleatoire();
 
-                if (joueur.estVivant)
+                // Lancer de dé
+                int DeJoueur = De.LanceLeDe();
+                int DeMonstre = De.LanceLeDe();
+
+                while (monstre.EstVivant)
                 {
-                    if (monstre is MonstreDifficile)
+                    if (DeJoueur >= DeMonstre)
                     {
-                        Console.WriteLine("PDV : " + joueur.PointDeVie);
-                        PointsDifficile++;
+                        joueur.Attaque(monstre);
                     }
                     else
                     {
-                        Console.WriteLine("PDV : " + joueur.PointDeVie);
-                        PointsFacile++;
+                        DeMonstre = De.LanceLeDe();
+                        DeJoueur = De.LanceLeDe();
+
+                        if (DeMonstre > DeJoueur)
+                        {
+                            if (monstre is MonstreFacile)
+                            {
+                                MonstreFacile monstreFacile = (MonstreFacile)monstre;
+                                monstreFacile.Attaque(joueur);
+                            }
+
+                            if (monstre is MonstreDifficile)
+                            {
+                                MonstreDifficile monstreDifficile = (MonstreDifficile)monstre;
+                                monstreDifficile.Attaque(joueur);
+                            }
+                        }
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Vous êtes mort...");
-                    break;
-                }
+                monstre = null;
             }
-            Console.WriteLine("Monstres faciles tués : {0}", PointsFacile);
-            Console.WriteLine("Monstres difficiles tués : {0}", PointsDifficile * 2);
-            Console.WriteLine("Vous avez points : {0}", PointsFacile + PointsDifficile * 2);
+
+            Console.WriteLine("Snif, vous êtes mort...");
+            Console.WriteLine("Bravo !!!Vous avez tué {0} monstres faciles et {1} monstres difficiles.Vous avez {2} points.",
+                joueur.MonstresFacileTués, joueur.MonstresDifficileTués, joueur.PointsGagnés);
         }
-        private static MonstreFacile FabriqueDeMonstre()
+
+        private static Monstre CreeMonstreAleatoire()
         {
-            if (random.Next(2) == 0)
-                return new MonstreFacile();
+            Random random = new Random();
+            
+            if (random.Next(0, 2) == 0)
+            {
+                monstre = new MonstreFacile();
+            }
             else
-                return new MonstreDifficile();
+            {
+                monstre = new MonstreDifficile();
+            }
+
+            return monstre;
         }
     }
 }

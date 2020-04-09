@@ -17,5 +17,10 @@ namespace JeuDeDes
         {
             return de.Next(1, 7);
         }
+
+        public static int LanceLeDe25()
+        {
+            return de.Next(1, 26);
+        }
     }
 }

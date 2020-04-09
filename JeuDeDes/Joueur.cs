@@ -46,7 +46,7 @@ namespace JeuDeDes
                 PointsGagnés = PointsGagnés + 2;
                 Console.WriteLine("MonstresDifficileTués : {0}", MonstresDifficileTués);
             }
-            else
+            else if (monstre is MonstreFacile)
             {
                 MonstresFacileTués++;
                 PointsGagnés++;
@@ -54,6 +54,12 @@ namespace JeuDeDes
             }
 
             monstre.EstVivant = false;
+        }
+
+        public void Attaque(BossDeFin boss)
+        {
+            boss.SubitDégats(De.LanceLeDe25());
+            Console.WriteLine("Boss SubitDégats : PDV {0}", boss.PointsDeVie);
         }
 
         public void SubitDégats(int degatsSubit)

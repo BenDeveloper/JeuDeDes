@@ -11,7 +11,7 @@ namespace JeuDeDes
         /// <summary>
         /// Indique si le monstre est vivant.
         /// </summary>
-        public bool EstVivant { get; set; }
+        public virtual bool EstVivant { get; set; }
 
         public Monstre()
         {

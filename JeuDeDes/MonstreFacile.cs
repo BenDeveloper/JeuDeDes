@@ -10,7 +10,8 @@ namespace JeuDeDes
     {
         public override void Attaque(Joueur joueur)
         {
-            joueur.SubitDégats(10); 
+            joueur.SubitDégats(10);
+            Console.WriteLine("Joueur SubitDégats monstre facile : PDV {0}", joueur.PointsDeVie);
         }
     }
 }

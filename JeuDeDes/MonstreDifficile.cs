@@ -20,6 +20,7 @@ namespace JeuDeDes
             if (de < 6)
             {
                 joueur.SubitDégats(de * 5);
+                Console.WriteLine("Joueur SubitDégats monstre difficile : PDV {0}", joueur.PointsDeVie);
             }
         }
     }

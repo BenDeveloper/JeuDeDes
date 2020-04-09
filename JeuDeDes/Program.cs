@@ -22,7 +22,7 @@ namespace JeuDeDes
             // Nouveau joueur
             joueur = new Joueur();
 
-            while (joueur.EstVivant)
+            do
             {
                 // Nouveau monstre aléatoire
                 monstre = CreeMonstreAleatoire();
@@ -31,7 +31,7 @@ namespace JeuDeDes
                 int DeJoueur = De.LanceLeDe();
                 int DeMonstre = De.LanceLeDe();
 
-                while (monstre.EstVivant)
+                while (monstre.EstVivant && joueur.EstVivant)
                 {
                     if (DeJoueur >= DeMonstre)
                     {
@@ -57,8 +57,7 @@ namespace JeuDeDes
                         }
                     }
                 }
-                monstre = null;
-            }
+            } while (joueur.EstVivant);
 
             Console.WriteLine("Snif, vous êtes mort...");
             Console.WriteLine("Bravo !!!Vous avez tué {0} monstres faciles et {1} monstres difficiles.Vous avez {2} points.",

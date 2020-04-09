@@ -62,7 +62,6 @@ namespace JeuDeDes
             {
                 PointsDeVie -= degatsSubit;
             }
-            Console.WriteLine("Joueur SubitDégats : PDV {0}", PointsDeVie);
         }
     }
 }

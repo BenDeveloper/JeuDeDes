@@ -40,18 +40,19 @@ namespace JeuDeDes
 
         public void Attaque(Monstre monstre)
         {
-            if (monstre is MonstreFacile)
-            {
-                MonstresFacileTués++;
-                PointsGagnés++;
-                Console.WriteLine("MonstresFacileTués : {0}", MonstresFacileTués);
-            }
-            else if (monstre is MonstreDifficile)
+            if (monstre is MonstreDifficile)
             {
                 MonstresDifficileTués++;
                 PointsGagnés = PointsGagnés + 2;
                 Console.WriteLine("MonstresDifficileTués : {0}", MonstresDifficileTués);
             }
+            else
+            {
+                MonstresFacileTués++;
+                PointsGagnés++;
+                Console.WriteLine("MonstresFacileTués : {0}", MonstresFacileTués);
+            }
+
             monstre.EstVivant = false;
         }
 

@@ -44,16 +44,15 @@ namespace JeuDeDes
 
                         if (DeMonstre > DeJoueur)
                         {
-                            if (monstre is MonstreFacile)
-                            {
-                                MonstreFacile monstreFacile = (MonstreFacile)monstre;
-                                monstreFacile.Attaque(joueur);
-                            }
-
                             if (monstre is MonstreDifficile)
                             {
                                 MonstreDifficile monstreDifficile = (MonstreDifficile)monstre;
                                 monstreDifficile.Attaque(joueur);
+                            }
+                            else
+                            {
+                                MonstreFacile monstreFacile = (MonstreFacile)monstre;
+                                monstreFacile.Attaque(joueur);
                             }
                         }
                     }

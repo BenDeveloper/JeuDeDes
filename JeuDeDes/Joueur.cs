@@ -43,7 +43,7 @@ namespace JeuDeDes
             if (monstre is MonstreDifficile)
             {
                 MonstresDifficileTués++;
-                PointsGagnés = PointsGagnés + 2;
+                PointsGagnés += 2;
                 Console.WriteLine("MonstresDifficileTués : {0}", MonstresDifficileTués);
             }
             else if (monstre is MonstreFacile)

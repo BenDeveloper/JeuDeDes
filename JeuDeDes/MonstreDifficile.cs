@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeuDeDes
 {
-    public class MonstreDifficile : MonstreFacile
+    public class MonstreDifficile : Monstre
     {
         public override void Attaque(Joueur joueur)
         {
